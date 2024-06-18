@@ -9,3 +9,14 @@ CREATE DATABASE biblioteca
     IS_TEMPLATE = False;
 
     /*database biblioteca API 1*/
+
+
+    /*API 2 */
+
+CREATE TABLE lectores (
+    nombre VARCHAR (50);
+    apellido VARCHAR (50);
+    email VARCHAR (80) PRIMARY KEY;
+    fecha_nacimeinto TIME
+);
+
