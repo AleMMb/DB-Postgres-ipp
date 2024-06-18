@@ -13,10 +13,22 @@ CREATE DATABASE biblioteca
 
     /*API 2 */
 
+    //tabla lectores
+
 CREATE TABLE lectores (
-    nombre VARCHAR (50);
-    apellido VARCHAR (50);
-    email VARCHAR (80) PRIMARY KEY;
-    fecha_nacimeinto TIME
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR (50),
+    apellido VARCHAR (50),
+    email VARCHAR (80) PRIMARY KEY,
+    fecha_nacimeinto DATE
 );
 
+
+// tabla libros
+CREATE TABLE libros (
+    id SERIAL PRIMARY KEY,
+    nombre_libro VARCHAR (150),
+    nombre_editorial VARCHAR (150),
+    autor VARCHAR (150),
+    ISBN VARCHAR(30) 
+);
