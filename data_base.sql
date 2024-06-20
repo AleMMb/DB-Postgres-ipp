@@ -45,3 +45,23 @@ CREATE TABLE prestamos (
     FOREIGN KEY (id_lector) REFERENCES lectores(id_lector),
     FOREIGN KEY (id_libro) REFERENCES libros(id_libro)
 );
+
+// cambio de nombre del campo fecha de fecha_nacimiento en la tabla lectores
+ALTER TABLE lectores RENAME COLUMN fecha_nacimeinto TO fecha_nacimiento;
+
+//insersionde datos en la tabla lectores
+
+INSERT INTO lectores (nombre, apellido, email, fecha_nacimiento) VALUES
+("Juan Alberto", "Cortéz","juancortez@gmail.com", "1983-06-20");
+("Antonia", "De los Ríos","antoniarios_23@yahoo.com", "1978-11-24");
+("Nicolás", "Martin","nico_martin23@gmail.com", "1986-07-11");
+("Néstor", "Casco","nestor_casco2331@hotmmail.com", "1981-02-11");
+("Lisa", "Pérez","lisperez@hotmail.com", "1964-08-11");
+("Ana Rosa", "Estagnolli","anros@abcdatos.com", "1994-10-15");
+("Ana Rosa", "Estagnolli","anros@abcdatos.com", "1974-10-15");
+("Milagros", "Pastoruti", "mili_2231@gmail.com", "2001-01-22");
+("Pedro", "Alonso", "alonso.pedro@impermebilizantesrosario.com", "1983-09-05");
+("Arturo Ezequiel", "Ramírez", "artu.rama@outlook.com",  "1998-03-29");
+("Juan Ignacio", "Altarez", "juanaltarez.223@yahoo.com", "1975-08-24");
+
+
