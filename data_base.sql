@@ -46,7 +46,7 @@ CREATE TABLE prestamos (
     FOREIGN KEY (id_libro) REFERENCES libros(id_libro)
 );
 
-// cambio de nombre del campo fecha de fecha_nacimiento en la tabla lectores
+//cambio de nombre del campo fecha de fecha_nacimiento en la tabla lectores
 ALTER TABLE lectores RENAME COLUMN fecha_nacimeinto TO fecha_nacimiento;
 
 //insersionde datos en la tabla lectores
