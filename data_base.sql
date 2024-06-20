@@ -17,9 +17,9 @@ CREATE DATABASE biblioteca
 
 CREATE TABLE lectores (
     id_lector SERIAL PRIMARY KEY,
-    nombre VARCHAR (50) NOT NULL,
-    apellido VARCHAR (50) NOT NULL,
-    email VARCHAR (80) UNIQUE  NOT NULL,
+    nombre VARCHAR(50) NOT NULL,
+    apellido VARCHAR(50) NOT NULL,
+    email VARCHAR(50) UNIQUE  NOT NULL,
     fecha_nacimeinto DATE
 );
 
@@ -27,9 +27,9 @@ CREATE TABLE lectores (
 // tabla libros
 CREATE TABLE libros (
     id_libro SERIAL PRIMARY KEY,
-    nombre_libro VARCHAR NOT NULL (150),
-    nombre_editorial VARCHAR NOT NULL (150),
-    autor VARCHAR NOT NULL (150),
+    nombre_libro VARCHAR(100) NOT NULL,
+    nombre_editorial VARCHAR (100) NOT NULL,
+    autor VARCHAR (100) NOT NULL,
     ISBN VARCHAR(30) UNIQUE NOT NULL
 );
 
@@ -40,8 +40,8 @@ CREATE TABLE prestamos (
     id_prestamo SERIAL PRIMARY KEY,
     id_lector INTEGER,
     id_libro INTEGER,
-    fecha_prestamo NOT NULL DATE,
-    fecha_devolucion DATE,
+    fecha_prestamo TIMESTAMP NOT NULL,
+    fecha_devolucion TIMESTAMP,
     FOREIGN KEY (id_lector) REFERENCES lectores(id_lector),
     FOREIGN KEY (id_libro) REFERENCES libros(id_libro)
 );
