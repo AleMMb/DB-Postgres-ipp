@@ -65,3 +65,16 @@ INSERT INTO lectores (nombre, apellido, email, fecha_nacimiento) VALUES
 ("Juan Ignacio", "Altarez", "juanaltarez.223@yahoo.com", "1975-08-24");
 
 
+//insercciones de tados en la tabla libros
+
+INSERT INTO libros (nombre_libro, nombre_editorial, autor, ISBN) VALUES
+("Cementerio de animales", "Ediciones de Mente", "Stephen King", 4568874);
+("En el nombre de la rosa", "Editorial España", "Umberto Eco", 44558877);
+("Cien años de soledad", "Sudamericana", "Gabriel García Márquez", 7788845);
+("El diario de Ellen Rimbauer", "Editorial Maine", "Stephen King", 45699874);
+("La hojarasca", "Sudamericana", "Gabriel García Márquez", 7787898);
+("El amor en los tiempos del cólera", "Sudamericana", "Gabriel García Márquez", 2564111);
+("La casa de los espíritus", "Ediciones Chile", "Isabel Allende", 5544781);
+("Paula", "Ediciones chile", "Isabel Allende" 22545447);
+("La tregua", "Alfa", "Mario Benedetti", 2225412);
+("Gracias por el fuego", "Alfa", "Mario Benedetti", 88541254);
