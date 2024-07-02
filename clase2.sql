@@ -60,3 +60,29 @@ Articulos: {num_art(pk), nom_art, precio}
 --Cuarta forma normal (No tiene campos que se repitan y dependan de otros.)
 -- en 3fn y no presenta dependencias multivaluadas no triviales.
 -- esta modelo ya está en la cuarta forma normal.
+
+CREATE TABLE cliente(
+    id_cliente SERIAL PRIMARY KEY,
+    nom_cliente VARCHAR(50) NOT NULL,
+    estado VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE ordenes(
+    id_orden SERIAL PRIMARY KEY,
+    fecha DATE NOT NULL,
+    FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
+);
+
+CREATE TABLE articulo (
+    num_art SERIAL PRIMARY KEY,
+    nom_art VARCHAR(50) NOT NULL,
+    precio FLOAT NOT NULL
+);
+
+CREATE TABLE detalle(
+    id_detalle SERIAL PRIMARY KEY,
+    id_orden INTEGER NOT NULL,
+    cant INTEGER NOT NULL,
+    FOREIGN KEY (id_orden) REFERENCES ordenes(id_orden),
+    FOREIGN KEY (num_art) REFERENCES articulos(num_art)
+);
