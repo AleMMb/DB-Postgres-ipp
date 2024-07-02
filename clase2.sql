@@ -53,3 +53,10 @@ Ordenes: {ID_orden (pk), fecha, id_cliente(fk)}
 Cliente: {id_cliente(pk), nom_cliente, estado}
 Detalle: {ID_detalle (pk), ID_orden(fk), num_art(fk), cant}
 Articulos: {num_art(pk), nom_art, precio}
+
+-- Forma normal Boyce Codd.
+--Una tabla se considera en esta forma si y solo si cada determinate po atributo es una llave candidata.
+
+--Cuarta forma normal (No tiene campos que se repitan y dependan de otros.)
+-- en 3fn y no presenta dependencias multivaluadas no triviales.
+-- esta modelo ya está en la cuarta forma normal.
