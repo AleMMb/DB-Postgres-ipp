@@ -81,3 +81,28 @@ INSERT INTO libros (nombre_libro, nombre_editorial, autor, ISBN) VALUES
 SELECT * FROM lectores;
 SELECT * FROM libros;
 SELECT * from prestamos;
+
+
+
+-- API 3
+-- Inserción de datos en la tabla préstamos
+
+-- 4 lectores tengan en préstamos 5 libros
+INSERT INTO prestamos (id_lector, id_libro, fecha_prestamo) VALUES
+(1, 4, CURRENT_DATE),(1, 2, CURRENT_DATE),(1, 5, CURRENT_DATE),(1, 8, CURRENT_DATE),(1, 6, CURRENT_DATE),
+(2, 1, CURRENT_DATE),(2, 3, CURRENT_DATE),(2, 6, CURRENT_DATE),(2, 4, CURRENT_DATE),(2, 9, CURRENT_DATE),
+(3, 1, CURRENT_DATE),(3, 10, CURRENT_DATE),(3, 3, CURRENT_DATE),(3, 5, CURRENT_DATE),(3, 6, CURRENT_DATE),
+(4, 10, CURRENT_DATE),(4, 5, CURRENT_DATE),(4, 6, CURRENT_DATE),(4, 1, CURRENT_DATE),(4, 8, CURRENT_DATE),
+
+-- 3 lectores tengan en préstamo 3 libros
+(5, 1, CURRENT_DATE),(5, 6, CURRENT_DATE),(5, 8, CURRENT_DATE),
+(7, 10, CURRENT_DATE),(7, 9, CURRENT_DATE),(7, 6, CURRENT_DATE),
+(8, 3, CURRENT_DATE),(8, 4, CURRENT_DATE),(8, 5, CURRENT_DATE),
+
+-- 2 lectores en préstamo 1 libro
+(9, 1, CURRENT_DATE),
+(10, 8, CURRENT_DATE);
+
+
+
+

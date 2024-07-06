@@ -55,7 +55,7 @@ Detalle: {ID_detalle (pk), ID_orden(fk), num_art(fk), cant}
 Articulos: {num_art(pk), nom_art, precio}
 
 -- Forma normal Boyce Codd.
---Una tabla se considera en esta forma si y solo si cada determinate po atributo es una llave candidata.
+--Una tabla se considera en esta forma si y solo si cada determinante o atributo es una llave candidata.
 
 --Cuarta forma normal (No tiene campos que se repitan y dependan de otros.)
 -- en 3fn y no presenta dependencias multivaluadas no triviales.
@@ -86,3 +86,14 @@ CREATE TABLE detalle(
     FOREIGN KEY (id_orden) REFERENCES ordenes(id_orden),
     FOREIGN KEY (num_art) REFERENCES articulos(num_art)
 );
+
+-- data input.
+
+
+-- Tutoría 3 02/07/2024
+
+-- préstamo de de 5 libros a 4 lectores.
+
+INSERT INTO prestamos(id_lector, id_libro, fecha_prestamo) VALUES
+(1, 1, CURRENT_DATE, ),
+
