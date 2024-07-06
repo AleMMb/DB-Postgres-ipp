@@ -103,6 +103,33 @@ INSERT INTO prestamos (id_lector, id_libro, fecha_prestamo) VALUES
 (9, 1, CURRENT_DATE),
 (10, 8, CURRENT_DATE);
 
+-- Consultas.
+-- conocer cuántas veces se presta un determinado libro, ordenando las cantidades de mayor a menor.
+SELECT id_libro, COUNT(*) AS veces_prestado FROM prestamos GROUP BY id_libro ORDER BY veces_prestado DESC;
+
+-- Efectuar consultas para saber la cantidad de libros que tiene en préstamo cada lector
+SELECT id_lector, nombre, apellido, 
+    (SELECT COUNT(*) FROM prestamos WHERE prestamos.id_lector = lectores.id_lector AND prestamos.fecha_devolucion IS NULL) 
+AS en_prestamo FROM lectores;
 
 
+-- simular la devolución.
+UPDATE prestamos
+SET fecha_devolucion = CURRENT_DATE
+WHERE id_lector = 2 AND id_libro = 1 AND fecha_devolucion IS NULL;
 
+-- avg edad de lectores
+SELECT AVG(EXTRACT(YEAR FROM AGE(fecha_nacimiento))) AS edad_promedio
+FROM lectores;
+
+-- lector con mayor edad
+SELECT nombre, apellido, fecha_nacimiento, EXTRACT(YEAR FROM AGE(fecha_nacimiento)) AS edad
+FROM lectores
+ORDER BY fecha_nacimiento ASC
+LIMIT 1;
+
+-- lector con menor edad
+SELECT nombre, apellido, fecha_nacimiento, EXTRACT(YEAR FROM AGE(fecha_nacimiento)) AS edad
+FROM lectores
+ORDER BY fecha_nacimiento DESC
+LIMIT 1;
