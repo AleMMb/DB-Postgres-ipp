@@ -133,3 +133,26 @@ SELECT nombre, apellido, fecha_nacimiento, EXTRACT(YEAR FROM AGE(fecha_nacimient
 FROM lectores
 ORDER BY fecha_nacimiento DESC
 LIMIT 1;
+
+-- crear vista libros prestados.
+
+CREATE VIEW libros_prestados AS
+SELECT 
+    lectores.nombre AS nombre_lector,
+    lectores.apellido AS apellido_lector,
+    libros.nombre_libro,
+    libros.nombre_editorial,
+    libros.ISBN
+FROM 
+    prestamos
+JOIN 
+    lectores ON prestamos.id_lector = lectores.id_lector
+JOIN 
+    libros ON prestamos.id_libro = libros.id_libro
+WHERE 
+    prestamos.fecha_devolucion IS NULL;
+
+-- Consulta para lectro Pedro Alonso
+SELECT * 
+FROM libros_prestados
+WHERE nombre_lector = 'Pedro' AND apellido_lector = 'Alonso';
