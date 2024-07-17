@@ -177,8 +177,6 @@ WHERE id_lector = parametro_id_lector AND id_libro = parametro_id_libro AND fech
 END;
 $$;
 
-
-
 -- Se llama al procedimiento.
 CALL registro_devolucion(1, 5);
 CALL registro_devolucion(3, 4);
@@ -188,3 +186,34 @@ CALL registro_devolucion(3, 4);
 SELECT * 
 FROM prestamos
 WHERE id_lector = 1 AND id_libro = 5;
+
+-- Consigna 2
+-- crear tabla:
+CREATE TABLE logs (
+    id_log SERIAL PRIMARY KEY,
+    id_lector INTEGER NOT NULL,
+    id_libro INTEGER NOT NULL,
+    fecha_devolucion TIMESTAMP NOT NULL
+);
+
+-- declarar funcion
+CREATE FUNCTION registrar_log_devolucion()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO logs (id_lector, id_libro, fecha_devolucion)
+    VALUES (NEW.id_lector, NEW.id_libro, NEW.fecha_devolucion);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- crear trigger
+CREATE TRIGGER trigger_devolucion
+AFTER UPDATE OF fecha_devolucion ON prestamos
+FOR EACH ROW
+WHEN (OLD.fecha_devolucion IS NULL AND NEW.fecha_devolucion IS NOT NULL)
+EXECUTE FUNCTION registrar_log_devolucion();
+
+-- Devolver tres libros
+CALL registrar_devolucion(1, 2);
+CALL registrar_devolucion(3, 3);
+CALL registrar_devolucion(7, 10);
