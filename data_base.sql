@@ -13,7 +13,6 @@ CREATE DATABASE biblioteca
 --API2
 
 -- tabla lectores
-
 CREATE TABLE lectores (
     id_lector SERIAL PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
@@ -34,7 +33,6 @@ CREATE TABLE libros (
 
 
 -- tabla Préstamos
-
 CREATE TABLE prestamos (
     id_prestamo SERIAL PRIMARY KEY,
     id_lector INTEGER,
@@ -48,7 +46,6 @@ CREATE TABLE prestamos (
 
 
 --inserción de datos en la tabla lectores
-
 
 INSERT INTO lectores (nombre, apellido, email, fecha_nacimiento) VALUES
 ('Juan Alberto', 'Cortéz', 'juancortez@gmail.com', '1983-06-20'),
@@ -135,7 +132,6 @@ ORDER BY fecha_nacimiento DESC
 LIMIT 1;
 
 -- crear vista libros prestados.
-
 CREATE VIEW libros_prestados AS
 SELECT 
     lectores.nombre AS nombre_lector,
@@ -182,7 +178,6 @@ CALL registro_devolucion(1, 5);
 CALL registro_devolucion(3, 4);
 
 -- Realiza la consulta a la tabla préstamos para verificar l funcionamiento del procedimiento.
-
 SELECT * 
 FROM prestamos
 WHERE id_lector = 1 AND id_libro = 5;
@@ -214,6 +209,22 @@ WHEN (OLD.fecha_devolucion IS NULL AND NEW.fecha_devolucion IS NOT NULL)
 EXECUTE FUNCTION registrar_log_devolucion();
 
 -- Devolver tres libros
-CALL registrar_devolucion(1, 2);
-CALL registrar_devolucion(3, 3);
-CALL registrar_devolucion(7, 10);
+CALL registro_devolucion(1, 2);
+CALL registro_devolucion(3, 3);
+CALL registro_devolucion(7, 10);
+
+
+--  Consigna 3
+CREATE FUNCTION libros_prestados()
+RETURNS INTEGER AS $$
+DECLARE
+    cantidad_prestados INTEGER;
+BEGIN
+    SELECT COUNT(*) INTO cantidad_prestados
+    FROM prestamos
+    WHERE fecha_devolucion IS NULL;
+    RETURN cantidad_prestados;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT libros_prestados() AS cantidad_de_ejemplares_prestados;
