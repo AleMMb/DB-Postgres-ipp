@@ -156,3 +156,35 @@ WHERE
 SELECT * 
 FROM libros_prestados
 WHERE nombre_lector = 'Pedro' AND apellido_lector = 'Alonso';
+
+
+-- API 4
+-- Crea el procedimento
+CREATE PROCEDURE registro_devolucion(
+    IN parametro_id_lector INT,
+    IN parametro_id_libro INT
+)
+
+LANGUAGE plpgsql
+AS $$
+BEGIN
+UPDATE prestamos
+SET fecha_devolucion = CURRENT_TIMESTAMP
+WHERE id_lector = parametro_id_lector AND id_libro = parametro_id_libro AND fecha_devolucion IS NULL;
+    IF NOT FOUND THEN
+        RAISE NOTICE 'El lector% no tiene préstamos asociados al libro% , verifique datos.', parametro_id_lector, parametro_id_libro;
+    END IF;
+END;
+$$;
+
+
+
+-- Se llama al procedimiento.
+CALL registro_devolucion(1, 5);
+CALL registro_devolucion(3, 4);
+
+-- Realiza la consulta a la tabla préstamos para verificar l funcionamiento del procedimiento.
+
+SELECT * 
+FROM prestamos
+WHERE id_lector = 1 AND id_libro = 5;
